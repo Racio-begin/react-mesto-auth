@@ -135,11 +135,16 @@ function App() {
 			.finally(() => setIsLoading(false))
 	};
 
+	const handleLogin = ({ username, email }) => {
+    setLoggedIn(true);
+    setUserData({ username, email });
+  }
+
 	function handleSignOut() {
 		localStorage.removeItem('jwt');
 		setLoggedIn(false);
 		navigate('/sign-in');
-	}
+	};
 
 	return (
 		// todo: <AppContext.Provider value={{ isLoading, closeAllPopups }}>
@@ -168,7 +173,7 @@ function App() {
 
 						<Route
 							path="sign-in"
-							element={<Login />}
+							element={<Login handleLogin={handleLogin}/>}
 						/>
 
 						<Route path="mesto" element={

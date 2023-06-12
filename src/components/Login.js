@@ -1,25 +1,33 @@
 import { useState } from "react";
-import AuthForm from "./AuthForm"
+import AuthForm from "./AuthForm";
+import * as Auth from "../utils/Auth";
 
-function Login({ onLogin }) {
+function Login({ handleLogin }) {
 
-	const [userInfo, setUserInfo] = useState({
+	const [formValue, setFormValue] = useState({
 		email: '',
 		password: ''
 	});
-	
+
 	const handleChange = (event) => {
-		const {value, name} = event.target;
-		setUserInfo({...values, [name]: value});
+		const { name, value } = event.target;
+		setFormValue({ ...formValue, [name]: value });
 	};
-	
-	function handleSubmit(e) {
-		e.preventDefault();
-	
-		onLogin({
-			email: userInfo.email,
-			password: userInfo.password
-		});
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		const { email, password } = formValue;
+
+		Auth.login(email, password)
+			.then(data => {
+				if (data.jwt) {
+					localStorage.setItem('jwt', data.jwt);
+					handleLogin(data.user);
+					navigate('/mesto');
+				}
+			})
+			.catch(err => setErrorMessage(err));
 	};
 
 	return (
@@ -36,7 +44,7 @@ function Login({ onLogin }) {
 					type="email"
 					name="email"
 					id="user-email"
-					value={userInfo.email || ''}
+					value={formValue.email || ''}
 					onChange={handleChange}
 					placeholder="Email"
 					minLength={5}
@@ -52,7 +60,7 @@ function Login({ onLogin }) {
 					type="password"
 					name="password"
 					id="user-password"
-					value={userInfo.password || ''}
+					value={formValue.password || ''}
 					onChange={handleChange}
 					placeholder="Пароль"
 					minLength={5}
