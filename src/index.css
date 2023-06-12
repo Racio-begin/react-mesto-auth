@@ -10,8 +10,18 @@
 /*  Body  */
 @import url(../src/blocks/body/body.css);
 
+/*  Auth  */
+
+@import url(../src/blocks/auth/auth.css);
+@import url(../src/blocks/auth/__button/auth__button.css);
+@import url(../src/blocks/auth/__container/auth__container.css);
+@import url(../src/blocks/auth/__form/auth_form.css);
+@import url(../src/blocks/auth/__input/auth__input.css);
+@import url(../src/blocks/auth/__title/auth__title.css);
+
 /*  Header  */
 @import url(../src/blocks/header/header.css);
+@import url(../src/blocks/header/__link/header__link.css);
 @import url(../src/blocks/header/__logo/header__logo.css);
 
 /*  Button  */

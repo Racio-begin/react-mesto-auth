@@ -8,10 +8,11 @@
   justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
-}
+  justify-content: space-between; 
+};
 
 @media screen and (max-width: 568px) {
   .header {
     padding-bottom: 30px;
   }
-}
+};

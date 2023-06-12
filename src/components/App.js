@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+
+import ProtectedRoute from './ProtectedRoute';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
@@ -12,7 +15,10 @@ import ImagePopup from './ImagePopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
 
-import logo from '../images/logo.svg'
+import Register from './Register';
+import Login from './Login';
+// import InfoTooltip from './InfoTooltip';
+
 import '../index.css';
 
 function App() {
@@ -32,6 +38,12 @@ function App() {
 	const [cards, setCards] = useState([]);
 
 	const [isLoading, setIsLoading] = useState(false);
+
+	const [loggedIn, setLoggedIn] = useState(false);
+
+	const [userEmail, setUserEmail] = useState('');
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		api.getUserData()
@@ -123,26 +135,60 @@ function App() {
 			.finally(() => setIsLoading(false))
 	};
 
+	function handleSignOut() {
+		localStorage.removeItem('jwt');
+		setLoggedIn(false);
+		navigate('/sign-in');
+	}
+
 	return (
 		// todo: <AppContext.Provider value={{ isLoading, closeAllPopups }}>
 		<CurrentUserContext.Provider value={currentUser}>
 			<div className="page">
 
 				<div className="page__content">
-					<Header logo={logo} />
 
-					<Main
-						cards={cards}
-						onEditAvatar={handleEditAvatarClick}
-						onEditProfile={handleEditProfileClick}
-						onAddPlace={handleAddPlaceClick}
-						onCardDelete={handleDeletePlaceClick}
-						onCardClick={handleCardClick}
-						onCardLike={handleCardLike}
-
+					<Header
+						loggedIn={loggedIn}
+						userEmail={userEmail}
+						handleSignOut={handleSignOut}
 					/>
 
-					<Footer />
+					<Routes>
+
+						<Route
+							path="/"
+							element={loggedIn ? <Navigate to="/mesto" /> : <Navigate to="/sign-in" replace />}
+						/>
+
+						<Route
+							path="sign-up"
+							element={<Register />}
+						/>
+
+						<Route
+							path="sign-in"
+							element={<Login />}
+						/>
+
+						<Route path="mesto" element={
+							<ProtectedRoute element={Main}
+								cards={cards}
+								onEditAvatar={handleEditAvatarClick}
+								onEditProfile={handleEditProfileClick}
+								onAddPlace={handleAddPlaceClick}
+								onCardDelete={handleDeletePlaceClick}
+								onCardClick={handleCardClick}
+								onCardLike={handleCardLike}
+							/>}
+						/>
+
+					</Routes>
+
+					<Footer
+						loggedIn={loggedIn}
+					/>
+
 				</div>
 
 				{/* <----     POPUP редактирования аватара    ----> */}
