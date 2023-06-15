@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AuthForm from "./AuthForm";
-import * as Auth from "../utils/Auth";
 
 function Login({ handleLogin }) {
 
@@ -14,21 +13,13 @@ function Login({ handleLogin }) {
 		setFormValue({ ...formValue, [name]: value });
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-
-		const { email, password } = formValue;
-
-		Auth.login(email, password)
-			.then(data => {
-				if (data.jwt) {
-					localStorage.setItem('jwt', data.jwt);
-					handleLogin(data.user);
-					navigate('/mesto');
-				}
-			})
-			.catch(err => setErrorMessage(err));
-	};
+    function handleSubmit(evt) {
+        evt.preventDefault();
+        handleLogin({
+            email: loginUserInfo.email,
+            password: loginUserInfo.password,
+        });
+    };
 
 	return (
 		<div className="auth">
@@ -51,9 +42,9 @@ function Login({ handleLogin }) {
 					maxLength={40}
 					required=""
 				/>
-				<span
+				{/* <span
 					className="email-error popup__input-error"
-				/>
+				/> */}
 
 				<input
 					className="auth__input auth__input_type_password"
@@ -67,9 +58,9 @@ function Login({ handleLogin }) {
 					maxLength={30}
 					required=""
 				/>
-				<span
+				{/* <span
 					className="password-error popup__input-error"
-				/>
+				/> */}
 
 			</AuthForm>
 		</div>

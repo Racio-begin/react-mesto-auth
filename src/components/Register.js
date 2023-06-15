@@ -33,32 +33,32 @@ function Register({ handleRegister }) {
 					type="email"
 					name="email"
 					id="user-email"
-					value={formValue.email || ''}
+					value={formValue.email}
 					onChange={handleChange}
 					placeholder="Email"
 					minLength={5}
 					maxLength={40}
 					required=""
 				/>
-				<span
-					className="email-error popup__input-error"
-				/>
+				{/* <span
+					className="email-error popup__input_type_error"
+				/> */}
 
 				<input
 					className="auth__input auth__input_type_password"
 					type="password"
 					name="password"
 					id="user-password"
-					value={formValue.password || ''}
+					value={formValue.password}
 					onChange={handleChange}
 					placeholder="Пароль"
 					minLength={5}
 					maxLength={30}
 					required=""
 				/>
-				<span
-					className="password-error popup__input-error"
-				/>
+				{/* <span
+					className="password-error popup__input_type_error"
+				/> */}
 
 			</AuthForm>
 		</div>

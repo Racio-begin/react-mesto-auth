@@ -136,9 +136,9 @@ function App() {
 	};
 
 	const handleLogin = ({ username, email }) => {
-    setLoggedIn(true);
-    setUserData({ username, email });
-  }
+		setLoggedIn(true);
+		setUserData({ username, email });
+	}
 
 	function handleSignOut() {
 		localStorage.removeItem('jwt');
@@ -173,11 +173,12 @@ function App() {
 
 						<Route
 							path="sign-in"
-							element={<Login handleLogin={handleLogin}/>}
+							element={<Login handleLogin={handleLogin} />}
 						/>
 
 						<Route path="mesto" element={
 							<ProtectedRoute element={Main}
+								loggedIn={loggedIn}
 								cards={cards}
 								onEditAvatar={handleEditAvatarClick}
 								onEditProfile={handleEditProfileClick}

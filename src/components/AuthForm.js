@@ -13,7 +13,7 @@ function AuthForm({ title, name, onSubmit, buttonText, ...props }) {
 				{props.children}
 
 				<button
-					className="auth__button button"
+					className="auth__button"
 					type="submit">
 					{buttonText}
 				</button>

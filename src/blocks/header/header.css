@@ -6,9 +6,10 @@
   border-bottom: 1px solid rgba(84, 84, 84, .7);
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  align-items: center;
   box-sizing: border-box;
-  justify-content: space-between; 
+  justify-content: space-between;
 };
 
 @media screen and (max-width: 568px) {
