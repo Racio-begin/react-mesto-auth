@@ -13,16 +13,16 @@ function Header({ userData, handleSignOut }) {
 
 			<Routes>
 
-					<Route path="/mesto" element={
-						<div className="header__routes">
-							<p className="header__email">{userData.email}</p>
-							<button
-								className="header__signout button"
-								type="button"
-								onClick={handleSignOut}
-							>Выйти</button>
-						</div>
-					} />
+				<Route path="/mesto" element={
+					<div className="header__routes">
+						<p className="header__email">{userData.email}</p>
+						<button
+							className="header__signout button"
+							type="button"
+							onClick={handleSignOut}
+						>Выйти</button>
+					</div>
+				} />
 
 				<Route
 					path="/sign-up"

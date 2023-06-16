@@ -63,7 +63,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		tockenCheck();
+		handleCheckToken();
 	}, []);
 
 	function handleEditAvatarClick() {
@@ -181,7 +181,7 @@ function App() {
 			})
 	};
 
-	const tockenCheck = () => {
+	const handleCheckToken = () => {
 		const jwt = localStorage.getItem('jwt');
 
 		if (jwt) {

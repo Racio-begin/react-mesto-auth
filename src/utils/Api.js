@@ -1,4 +1,4 @@
-import { baseUrl, myToken } from "./constants";
+import { baseCohortUrl, myToken } from "./constants";
 
 class Api {
 	constructor(config) {
@@ -89,7 +89,7 @@ class Api {
 };
 
 const api = new Api({
-	url: baseUrl,
+	url: baseCohortUrl,
 	headers: {
 		authorization: myToken,
 		'Content-Type': 'application/json'
