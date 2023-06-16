@@ -16,9 +16,10 @@ import ImagePopup from './ImagePopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
 
+import * as Auth from '../utils/Auth';
 import Register from './Register';
 import Login from './Login';
-// import InfoTooltip from './InfoTooltip';
+import InfoTooltip from './InfoTooltip';
 
 import '../index.css';
 
@@ -42,7 +43,10 @@ function App() {
 
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	const [userEmail, setUserEmail] = useState('');
+	// const [userEmail, setUserEmail] = useState('');
+	const [userData, setUserData] = useState({ email: '', password: '' });
+
+	const [successInfoTooltip, setSuccessInfoTooltip] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -77,7 +81,11 @@ function App() {
 	function handleDeletePlaceClick(card) {
 		setDeletePlace(card)
 		setDeletePlacePopupOpened(true)
-	}
+	};
+
+	function handleInfoTooltipClick() {
+		setSuccessInfoTooltip(true)
+	};
 
 	function handleUpdateUser(userData) {
 		setIsLoading(true)
@@ -103,6 +111,7 @@ function App() {
 		setDeletePlacePopupOpened(false)
 		setEditProfileOpened(false);
 		setSelectedCard(null);
+		setSuccessInfoTooltip(false);
 	};
 
 	function handleCardLike(card) {
@@ -136,10 +145,63 @@ function App() {
 			.finally(() => setIsLoading(false))
 	};
 
-	const handleLogin = ({ username, email }) => {
-		setLoggedIn(true);
-		setUserData({ username, email });
-	}
+	const handleLogin = (userData) => {
+		const {email, password} = userData;
+		Auth.login({ email, password })
+			.then((res) => {
+				localStorage.setItem('jwt', res.token)
+				setUserData({ email, password });
+				setLoggedIn(true)
+				navigate('/mesto')
+			})
+			.catch(() => {
+				setTooltip({
+					text: 'Что-то пошло не так! Попробуйте еще раз.',
+					type: 'invalid',
+				});
+				setIsTooltipPopupOpen(true)
+				console.error(`Войти в аккаунт, App`)
+			})
+	};
+
+	const handleRegister = (userData) => {
+		const {email, password} = userData;
+		Auth.register({ email, password })
+			.then(res => {
+				handleInfoTooltipClick();
+			})
+			.catch(() => {
+				console.error(`Зарегистрировать аккаунт, App`);
+				handleInfoTooltipClick();
+			})
+	};
+
+	const tockenCheck = () => {
+		const jwt = localStorage.getItem('jwt');
+
+		if (jwt) {
+			Auth.checkToken(jwt)
+				.then((res) => {
+					if (!res.data) {
+						return
+					}
+					setUserData
+					setLoggedIn(true)
+					navigate('/mesto');
+					setIsLoading(false);
+				})
+				.catch(() => {
+					console.error(`Зарегистрировать аккаунт, App`);
+					setLoggedIn(false)
+					setIsLoading(true);
+				})
+		};
+
+	};
+
+	useEffect(() => {
+		tockenCheck();
+	}, []);
 
 	function handleSignOut() {
 		localStorage.removeItem('jwt');
@@ -156,7 +218,7 @@ function App() {
 
 					<Header
 						loggedIn={loggedIn}
-						userEmail={userEmail}
+						userData={userData}
 						handleSignOut={handleSignOut}
 					/>
 
@@ -164,17 +226,21 @@ function App() {
 
 						<Route
 							path="/"
-							element={loggedIn ? <Navigate to="/mesto" /> : <Navigate to="/sign-in" replace />}
+							element={loggedIn ? <Navigate to="mesto" /> : <Navigate to="/sign-in" replace />}
 						/>
 
 						<Route
 							path="sign-up"
-							element={<Register />}
+							element={<Register
+								handleRegister={handleRegister}
+							/>}
 						/>
 
 						<Route
 							path="sign-in"
-							element={<Login handleLogin={handleLogin} />}
+							element={<Login
+								handleLogin={handleLogin}
+							/>}
 						/>
 
 						<Route path="mesto" element={

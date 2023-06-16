@@ -8,14 +8,23 @@ function Login({ handleLogin }) {
 		password: ''
 	});
 
-	const handleChange = (event) => {
-		const { name, value } = event.target;
-		setFormValue({ ...formValue, [name]: value });
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormValue({
+			...formValue,
+			[name]: value
+		});
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		// handleLogin({
+		// 	email: formValue.email,
+		// 	password: formValue.password
+		// });
 		handleLogin(formValue);
+
 	};
 
 	return (

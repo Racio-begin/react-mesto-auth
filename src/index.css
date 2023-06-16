@@ -80,6 +80,9 @@
 @import url(../src/blocks/popup/__input-error/_visible/popup__input-error_visible.css);
 @import url(../src/blocks/popup/__input/popup__input.css);
 @import url(../src/blocks/popup/__input/_type/popup__input_type_error.css);
+@import url(../src/blocks/popup/__info/popup__info.css);
+@import url(../src/blocks/popup/__info-icon/popup__info-icon.css);
+@import url(../src/blocks/popup/__info-title/popup__info-title.css);
 
 /*  Page-404 */
 

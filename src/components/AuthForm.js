@@ -1,3 +1,5 @@
+import React from "react";
+
 function AuthForm({ title, name, onSubmit, buttonText, ...props }) {
 
 	return (

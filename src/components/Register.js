@@ -9,13 +9,14 @@ function Register({ handleRegister }) {
 		password: ''
 	});
 
-	const handleChange = (event) => {
-		const { name, value } = event.target;
+	const handleChange = (e) => {
+		const { name, value } = e.target;
 		setFormValue({ ...formValue, [name]: value });
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
 		handleRegister(formValue);
 	};
 
