@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
+import PageNotFound from './PageNotFound';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
@@ -188,6 +189,8 @@ function App() {
 								onCardLike={handleCardLike}
 							/>}
 						/>
+
+						<Route path="*" element={<PageNotFound />} />
 
 					</Routes>
 

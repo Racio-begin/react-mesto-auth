@@ -11,7 +11,6 @@
 @import url(../src/blocks/body/body.css);
 
 /*  Auth  */
-
 @import url(../src/blocks/auth/auth.css);
 @import url(../src/blocks/auth/__button/auth__button.css);
 @import url(../src/blocks/auth/__container/auth__container.css);
@@ -81,6 +80,11 @@
 @import url(../src/blocks/popup/__input-error/_visible/popup__input-error_visible.css);
 @import url(../src/blocks/popup/__input/popup__input.css);
 @import url(../src/blocks/popup/__input/_type/popup__input_type_error.css);
+
+/*  Page-404 */
+
+@import url(../src/blocks/page-404/page-404.css);
+@import url(../src/blocks/page-404/__title/page-404__title.css);
 
 /*  Button inactive */
 @import url(../src/blocks/button/_inactive/button_inactive.css);

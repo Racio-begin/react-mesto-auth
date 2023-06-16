@@ -14,14 +14,14 @@ function Register({ handleRegister }) {
 		setFormValue({ ...formValue, [name]: value });
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
+	const handleSubmit = (event) => {
+		event.preventDefault();
 		handleRegister(formValue);
-	}
+	};
 
 	return (
 		<div className="auth">
+
 			<AuthForm
 				name={"register"}
 				title={"Регистрация"}
@@ -62,9 +62,11 @@ function Register({ handleRegister }) {
 				/> */}
 
 			</AuthForm>
+
 			<div className="auth__redirect">
 				<p className="auth__redirect_subtitle">Уже зарегистрированы? <Link to="/sign-in" className="auth__redirect_link">Войти</Link></p>
 			</div>
+
 		</div>
 	);
 

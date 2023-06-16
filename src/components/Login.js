@@ -13,13 +13,10 @@ function Login({ handleLogin }) {
 		setFormValue({ ...formValue, [name]: value });
 	};
 
-    function handleSubmit(evt) {
-        evt.preventDefault();
-        handleLogin({
-            email: loginUserInfo.email,
-            password: loginUserInfo.password,
-        });
-    };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		handleLogin(formValue);
+	};
 
 	return (
 		<div className="auth">
