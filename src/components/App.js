@@ -62,6 +62,10 @@ function App() {
 			.catch(() => console.error(`Получение карточек, App`))
 	}, []);
 
+	useEffect(() => {
+		tockenCheck();
+	}, []);
+
 	function handleEditAvatarClick() {
 		setEditAvatarPopupOpened(true)
 	};
@@ -146,10 +150,10 @@ function App() {
 	};
 
 	const handleLogin = (userData) => {
-		const {email, password} = userData;
+		const { email, password } = userData;
 		Auth.login({ email, password })
-			.then((res) => {
-				localStorage.setItem('jwt', res.token)
+			.then((data) => {
+				localStorage.setItem('jwt', data.token)
 				setUserData({ email, password });
 				setLoggedIn(true)
 				navigate('/mesto')
@@ -165,7 +169,7 @@ function App() {
 	};
 
 	const handleRegister = (userData) => {
-		const {email, password} = userData;
+		const { email, password } = userData;
 		Auth.register({ email, password })
 			.then(res => {
 				handleInfoTooltipClick();
@@ -185,8 +189,9 @@ function App() {
 				.then((res) => {
 					if (!res.data) {
 						return
-					}
-					setUserData
+					};
+
+					setUserData({ email: res.data.email })
 					setLoggedIn(true)
 					navigate('/mesto');
 					setIsLoading(false);
@@ -199,10 +204,6 @@ function App() {
 		};
 
 	};
-
-	useEffect(() => {
-		tockenCheck();
-	}, []);
 
 	function handleSignOut() {
 		localStorage.removeItem('jwt');
