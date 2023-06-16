@@ -34,19 +34,18 @@ function App() {
 	const [isDeletePlacePopupOpen, setDeletePlacePopupOpened] = useState(false);
 
 	const [selectedCard, setSelectedCard] = useState(null);
+	const [cards, setCards] = useState([]);
 
 	const [currentUser, setCurrentUser] = useState({});
-
-	const [cards, setCards] = useState([]);
 
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [loggedIn, setLoggedIn] = useState(false);
 
-	// const [userEmail, setUserEmail] = useState('');
 	const [userData, setUserData] = useState({ email: '', password: '' });
 
-	const [successInfoTooltip, setSuccessInfoTooltip] = useState(false);
+	const [isInfoTooltipOpen, setIsTooltipPopupOpen] = useState(false);
+	const [successInfoTooltip, setSuccessInfoTooltip] = useState({ image: "", text: "" });
 
 	const navigate = useNavigate();
 
@@ -87,10 +86,6 @@ function App() {
 		setDeletePlacePopupOpened(true)
 	};
 
-	function handleInfoTooltipClick() {
-		setSuccessInfoTooltip(true)
-	};
-
 	function handleUpdateUser(userData) {
 		setIsLoading(true)
 		api.updateUserData(userData)
@@ -115,7 +110,7 @@ function App() {
 		setDeletePlacePopupOpened(false)
 		setEditProfileOpened(false);
 		setSelectedCard(null);
-		setSuccessInfoTooltip(false);
+		setIsTooltipPopupOpen(false);
 	};
 
 	function handleCardLike(card) {
@@ -159,11 +154,11 @@ function App() {
 				navigate('/mesto')
 			})
 			.catch(() => {
-				setTooltip({
+				setIsTooltipPopupOpen(true);
+				setSuccessInfoTooltip({
 					text: 'Что-то пошло не так! Попробуйте еще раз.',
 					type: 'invalid',
 				});
-				setIsTooltipPopupOpen(true)
 				console.error(`Войти в аккаунт, App`)
 			})
 	};
@@ -172,11 +167,19 @@ function App() {
 		const { email, password } = userData;
 		Auth.register({ email, password })
 			.then(res => {
-				handleInfoTooltipClick();
+				setIsTooltipPopupOpen(true);
+				setSuccessInfoTooltip({
+					image: true,
+					text: "Вы успешно зарегистрировались!"
+				});
 				navigate('/sign-in')
 			})
 			.catch(() => {
-				handleInfoTooltipClick();
+				setIsTooltipPopupOpen(true);
+				setSuccessInfoTooltip({
+					image: false,
+					text: "Что-то пошло не так! Попробуйте ещё раз."
+				});
 				console.error(`Зарегистрировать аккаунт, App`);
 			})
 	};
@@ -305,6 +308,13 @@ function App() {
 				<ImagePopup
 					card={selectedCard}
 					onClose={closeAllPopups}
+				/>
+
+				{/* <----     POPUP с информацией о регистрации и авторизации    ----> */}
+				<InfoTooltip
+					isOpen={isInfoTooltipOpen}
+					onClose={closeAllPopups}
+					tooltip={successInfoTooltip}
 				/>
 
 			</div>

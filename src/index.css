@@ -78,6 +78,7 @@
 @import url(../src/blocks/popup/__container-image/popup__container-image.css);
 @import url(../src/blocks/popup/__container/_type/popup__container_type_edit-avatar.css);
 @import url(../src/blocks/popup/__container/_type/popup__container_type_delete-card.css);
+@import url(../src/blocks/popup/__container/_type/popup__container_type_tooltip.css);
 @import url(../src/blocks/popup/__photo/popup__photo.css);
 @import url(../src/blocks/popup/__input-error/popup__input-error.css);
 @import url(../src/blocks/popup/__input-error/_visible/popup__input-error_visible.css);
