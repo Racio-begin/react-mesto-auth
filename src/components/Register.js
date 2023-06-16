@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import AuthForm from "./AuthForm";
 
 function Register({ handleRegister }) {
@@ -24,7 +25,7 @@ function Register({ handleRegister }) {
 			<AuthForm
 				name={"register"}
 				title={"Регистрация"}
-				buttonText={"Зарегстироваться"}
+				buttonText={"Зарегистрироваться"}
 				onSubmit={handleSubmit}
 			>
 
@@ -61,6 +62,9 @@ function Register({ handleRegister }) {
 				/> */}
 
 			</AuthForm>
+			<div className="auth__redirect">
+				<p className="auth__redirect_subtitle">Уже зарегистрированы? <Link to="/sign-in" className="auth__redirect_link">Войти</Link></p>
+			</div>
 		</div>
 	);
 

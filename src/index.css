@@ -18,6 +18,9 @@
 @import url(../src/blocks/auth/__form/auth_form.css);
 @import url(../src/blocks/auth/__input/auth__input.css);
 @import url(../src/blocks/auth/__title/auth__title.css);
+@import url(../src/blocks/auth/__redirect/auth__redirect.css);
+@import url(../src/blocks/auth/__redirect/_link/auth__redirect_link.css);
+@import url(../src/blocks/auth/__redirect/_subtitle/auth__redirect_subtitle.css);
 
 /*  Header  */
 @import url(../src/blocks/header/header.css);
