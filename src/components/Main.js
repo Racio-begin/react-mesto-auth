@@ -3,6 +3,7 @@ import CurrentUserContext from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 import Footer from './Footer';
+
 import defaultUserAvatar from '../images/render_loading.gif';
 
 function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete }) {
