@@ -169,10 +169,11 @@ function App() {
 		Auth.register({ email, password })
 			.then(res => {
 				handleInfoTooltipClick();
+				navigate('/sign-in')
 			})
 			.catch(() => {
-				console.error(`Зарегистрировать аккаунт, App`);
 				handleInfoTooltipClick();
+				console.error(`Зарегистрировать аккаунт, App`);
 			})
 	};
 
@@ -191,9 +192,9 @@ function App() {
 					setIsLoading(false);
 				})
 				.catch(() => {
-					console.error(`Зарегистрировать аккаунт, App`);
 					setLoggedIn(false)
 					setIsLoading(true);
+					console.error(`Проверить jwt-токен на валидность, App`);
 				})
 		};
 

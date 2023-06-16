@@ -1,6 +1,6 @@
 export const BASE_URL = 'https://auth.nomoreparties.co/';
 
-function checkResponse(res) {
+function getResponseData(res) {
 	if (res.ok) {
 		return res.json();
 	};
@@ -16,7 +16,7 @@ export function register({ email, password }) {
 		},
 		body: JSON.stringify({ email, password }),
 	})
-		.then((res) => checkResponse(res));
+		.then((res) => getResponseData(res));
 };
 
 export function login({ email, password }) {
@@ -28,17 +28,17 @@ export function login({ email, password }) {
 		},
 		body: JSON.stringify({ email, password })
 	})
-		.then((res) => checkResponse(res));
+		.then((res) => getResponseData(res));
 };
 
-export function checkToken(myToken) {
+export function checkToken(jwt) {
 	return fetch(`${BASE_URL}users/me`, {
 		method: 'GET',
 		headers: {
 			'Accept': 'application/json',
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${myToken}`,
+			'Authorization': `Bearer ${jwt}`,
 		},
 	})
-		.then((res) => checkResponse(res));
+		.then((res) => getResponseData(res));
 };
