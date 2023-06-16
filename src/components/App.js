@@ -44,7 +44,7 @@ function App() {
 
 	const [userData, setUserData] = useState({ email: '', password: '' });
 
-	const [isInfoTooltipOpen, setIsTooltipPopupOpen] = useState(false);
+	const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 	const [successInfoTooltip, setSuccessInfoTooltip] = useState({ image: "", text: "" });
 
 	const navigate = useNavigate();
@@ -110,7 +110,7 @@ function App() {
 		setDeletePlacePopupOpened(false)
 		setEditProfileOpened(false);
 		setSelectedCard(null);
-		setIsTooltipPopupOpen(false);
+		setIsInfoTooltipOpen(false);
 	};
 
 	function handleCardLike(card) {
@@ -154,7 +154,7 @@ function App() {
 				navigate('/mesto')
 			})
 			.catch(() => {
-				setIsTooltipPopupOpen(true);
+				setIsInfoTooltipOpen(true);
 				setSuccessInfoTooltip({
 					text: 'Что-то пошло не так! Попробуйте еще раз.',
 					type: 'invalid',
@@ -167,7 +167,7 @@ function App() {
 		const { email, password } = userData;
 		Auth.register({ email, password })
 			.then(res => {
-				setIsTooltipPopupOpen(true);
+				setIsInfoTooltipOpen(true);
 				setSuccessInfoTooltip({
 					image: true,
 					text: "Вы успешно зарегистрировались!"
@@ -175,7 +175,7 @@ function App() {
 				navigate('/sign-in')
 			})
 			.catch(() => {
-				setIsTooltipPopupOpen(true);
+				setIsInfoTooltipOpen(true);
 				setSuccessInfoTooltip({
 					image: false,
 					text: "Что-то пошло не так! Попробуйте ещё раз."
@@ -264,10 +264,6 @@ function App() {
 						<Route path="*" element={<PageNotFound />} />
 
 					</Routes>
-
-					<Footer
-						loggedIn={loggedIn}
-					/>
 
 				</div>
 
