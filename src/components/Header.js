@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-function Header({ userEmail, handleSignOut }) {
+function Header({ userData, handleSignOut }) {
 	return (
 		<header className="header page__header">
 			<img
@@ -12,16 +12,17 @@ function Header({ userEmail, handleSignOut }) {
 			/>
 
 			<Routes>
-				<Route path="/" element={
-					<>
-						<p className="header__email">{userEmail}</p>
-						<button
-							className="header__signout"
-							type="button"
-							onClick={handleSignOut}
-						>Выйти</button>
-					</>
-				} />
+
+					<Route path="/mesto" element={
+						<div className="header__routes">
+							<p className="header__email">{userData.email}</p>
+							<button
+								className="header__signout button"
+								type="button"
+								onClick={handleSignOut}
+							>Выйти</button>
+						</div>
+					} />
 
 				<Route
 					path="/sign-up"

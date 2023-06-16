@@ -25,6 +25,9 @@
 @import url(../src/blocks/header/header.css);
 @import url(../src/blocks/header/__link/header__link.css);
 @import url(../src/blocks/header/__logo/header__logo.css);
+@import url(../src/blocks/header/__email/header__email.css);
+@import url(../src/blocks/header/__signout/header__signout.css);
+@import url(../src/blocks/header/__routes/header__routes.css);
 
 /*  Button  */
 @import url(../src/blocks/button/button.css);
