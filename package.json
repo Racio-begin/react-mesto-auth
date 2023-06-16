@@ -1,5 +1,5 @@
 {
-	"homepage": "https://racio-begin.github.io/mesto-react",
+	"homepage": "https://racio-begin.github.io/react-mesto-auth/",
 	"name": "react-mesto-auth",
 	"version": "1.0.0",
 	"description": "Данный проект представляет собой одностраничный сайт с профилем пользователя и секцией с карточками, где представлены красивейшие места России.",
