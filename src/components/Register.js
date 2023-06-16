@@ -11,7 +11,10 @@ function Register({ handleRegister }) {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setFormValue({ ...formValue, [name]: value });
+		setFormValue({
+			...formValue,
+			[name]: value
+		});
 	};
 
 	const handleSubmit = (e) => {

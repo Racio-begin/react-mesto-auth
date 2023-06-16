@@ -1,4 +1,3 @@
-import React from 'react';
 import usePopupClose from '../hooks/usePopupClose';
 
 function PopupWithForm({ name, title, buttonText, isOpen, onClose, onSubmit, ...props }) {

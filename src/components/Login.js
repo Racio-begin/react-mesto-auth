@@ -19,12 +19,7 @@ function Login({ handleLogin }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// handleLogin({
-		// 	email: formValue.email,
-		// 	password: formValue.password
-		// });
 		handleLogin(formValue);
-
 	};
 
 	return (

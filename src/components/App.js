@@ -5,21 +5,20 @@ import ProtectedRoute from './ProtectedRoute';
 import PageNotFound from './PageNotFound';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
-import api from '../utils/Api';
 
 import Header from './Header';
 import Main from './Main';
-import Footer from './Footer';
 import EditAvatarPopup from './EditAvatarPopup';
 import EditProfilePopup from './EditProfilePopup';
 import ImagePopup from './ImagePopup';
 import AddPlacePopup from './AddPlacePopup';
 import DeletePlacePopup from './DeletePlacePopup';
+import InfoTooltip from './InfoTooltip';
 
+import api from '../utils/Api';
 import * as Auth from '../utils/Auth';
 import Register from './Register';
 import Login from './Login';
-import InfoTooltip from './InfoTooltip';
 
 import '../index.css';
 
