@@ -32,6 +32,9 @@
 /*  Button  */
 @import url(../src/blocks/button/button.css);
 
+/*  Loading  */
+@import url(../src/blocks/loading/loading.css);
+
 /*  Content  */
 @import url(../src/blocks/content/content.css);
 

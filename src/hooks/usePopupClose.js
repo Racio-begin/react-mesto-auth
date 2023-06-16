@@ -2,9 +2,12 @@
 
 import { useEffect } from "react";
 
-function usePopupClose( isOpen, closePopup ) {
+function usePopupClose(isOpen, closePopup) {
+
 	useEffect(() => {
-		if (!isOpen) return; // останавливаем действие эффекта, если попап закрыт
+
+		// останавливаем действие эффекта, если попап закрыт
+		if (!isOpen) return;
 
 		const handleOverlay = (e) => {
 			// если есть `popup_opened` в классах блока, значит, кликнули на оверлей

@@ -131,7 +131,7 @@ function App() {
 			})
 			.then(closeAllPopups)
 			.catch(() => console.error(`Удаление карточки, App`))
-			.finally(() => setIsLoading(false))
+			.finally(() => setIsLoading(false));
 	};
 
 	function handleAddPlaceSubmit(userData) {
@@ -140,7 +140,7 @@ function App() {
 			.then((newCard) => setCards([newCard, ...cards]))
 			.then(closeAllPopups)
 			.catch(() => console.error(`Добавление новой карточки, App`))
-			.finally(() => setIsLoading(false))
+			.finally(() => setIsLoading(false));
 	};
 
 	const handleLogin = (userData) => {
@@ -155,8 +155,8 @@ function App() {
 			.catch(() => {
 				setIsInfoTooltipOpen(true);
 				setSuccessInfoTooltip({
-					text: 'Что-то пошло не так! Попробуйте еще раз.',
-					type: 'invalid',
+					image: false,
+					text: "Что-то пошло не так! Попробуйте ещё раз."
 				});
 				console.error(`Войти в аккаунт, App`)
 			})
@@ -196,13 +196,14 @@ function App() {
 					setUserData({ email: res.data.email })
 					setLoggedIn(true)
 					navigate('/mesto');
-					setIsLoading(false);
+					// setIsLoading(true);
+					// todo: не отображается во время проверки токена
 				})
 				.catch(() => {
 					setLoggedIn(false)
-					setIsLoading(true);
 					console.error(`Проверить jwt-токен на валидность, App`);
 				})
+				// .finally(() => setIsLoading(false));
 		};
 
 	};
@@ -257,6 +258,7 @@ function App() {
 								onCardDelete={handleDeletePlaceClick}
 								onCardClick={handleCardClick}
 								onCardLike={handleCardLike}
+								isLoading={isLoading}
 							/>}
 						/>
 
